@@ -16,10 +16,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ThreadActivity"
+            android:exported="false" />
+        <activity
             android:name=".FragmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ThreadActivity"
+            android:name=".AsyncActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
