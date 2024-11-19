@@ -73,17 +73,17 @@ class ListViewAdapter(
         val holder: ViewHolder
 
         if (convertView == null) {
-            // 재활용 불가능
-            view = layoutInflater.inflate(R.layout.car_item, null)
-            holder = ViewHolder()
-            holder.nthImage = view.findViewById(R.id.car_image)
+            // 재활용 불가능 -> 만들어 진 view가 없을 때
+            view = layoutInflater.inflate(R.layout.car_item, null)  // view 생성
+            holder = ViewHolder()   // holder에 ViewHolder 할당
+            holder.nthImage = view.findViewById(R.id.car_image)     // holder에 item의 id 지정
             holder.nthCar = view.findViewById(R.id.nthCar)
             holder.nthEngine = view.findViewById(R.id.nthEngine)
 
-            view.tag = holder
+            view.tag = holder   // view를 재홯용하기 위해 tag에 holder 할당
         } else {
-            // 재활용 가능
-            holder = convertView.tag as ViewHolder
+            // 재활용 가능 -> 만들어 진 view가 있을 때
+            holder = convertView.tag as ViewHolder  // 재활용 할 view를 viewholder에서 tag로 가져옴
             view = convertView
         }
         val car = carList.get(position)
