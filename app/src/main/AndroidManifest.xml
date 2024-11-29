@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".NetworkActivity"
+            android:exported="false" />
+        <activity
             android:name=".RoomActivity"
             android:exported="false" />
         <activity
@@ -55,7 +58,7 @@
             android:name=".FragmentActivity"
             android:exported="false" />
         <activity
-            android:name=".NetworkActivity"
+            android:name=".RetrofitActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
