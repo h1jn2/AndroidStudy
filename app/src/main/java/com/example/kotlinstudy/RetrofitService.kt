@@ -9,7 +9,12 @@ class StudentFromServer (val id: Int, val name: String, val age: Int, val intro:
     constructor(name: String, age: Int, intro: String): this(0, name, age, intro)
 }
 
+class YoutubeFromServer (val id: Int, val title: String, val content: String, val video: String, val thumbnail: String)
+
 interface RetrofitService {
+    @GET("youtube/list/")
+    fun getYoutubeList(): Call<ArrayList<YoutubeFromServer>>
+
     @GET("json/students/")
     fun getStudentList(): Call<ArrayList<StudentFromServer>>
 
