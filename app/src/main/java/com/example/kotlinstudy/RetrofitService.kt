@@ -11,9 +11,14 @@ class StudentFromServer (val id: Int, val name: String, val age: Int, val intro:
 
 class YoutubeFromServer (val id: Int, val title: String, val content: String, val video: String, val thumbnail: String)
 
+class MelonFromServer (val id: Int, val title: String, val song: String, val thumbnail: String)
+
 interface RetrofitService {
     @GET("youtube/list/")
     fun getYoutubeList(): Call<ArrayList<YoutubeFromServer>>
+
+    @GET("melon/list/")
+    fun getMelonList(): Call<ArrayList<MelonFromServer>>
 
     @GET("json/students/")
     fun getStudentList(): Call<ArrayList<StudentFromServer>>
