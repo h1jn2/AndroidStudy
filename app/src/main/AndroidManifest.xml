@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".InstaJoinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MelonActivity"
+            android:exported="false" />
+        <activity
             android:name=".MelonMusicPlayActivity"
             android:exported="false" />
         <activity
@@ -74,7 +80,7 @@
             android:name=".FragmentActivity"
             android:exported="false" />
         <activity
-            android:name=".MelonActivity"
+            android:name=".InstaLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

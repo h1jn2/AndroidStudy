@@ -1,7 +1,10 @@
 package com.example.kotlinstudy
 
+import android.media.session.MediaSession.Token
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.FieldMap
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 
@@ -13,7 +16,17 @@ class YoutubeFromServer (val id: Int, val title: String, val content: String, va
 
 class MelonFromServer (val id: Int, val title: String, val song: String, val thumbnail: String)
 
+class userToken(val username: String, val token: String)
+
 interface RetrofitService {
+    @POST("user/login/")
+    @FormUrlEncoded
+    fun loginInstaUser(@FieldMap params: HashMap<String, Any>): Call<userToken>
+
+    @POST("user/join/")
+    @FormUrlEncoded
+    fun createInstaUser(@FieldMap params: HashMap<String, Any>): Call<userToken>
+
     @GET("youtube/list/")
     fun getYoutubeList(): Call<ArrayList<YoutubeFromServer>>
 
