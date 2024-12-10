@@ -1,7 +1,10 @@
 package com.example.kotlinstudy
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -37,16 +40,24 @@ class InstaLoginActivity : AppCompatActivity() {
             val user = HashMap<String, Any>()
             user.put("username", username)
             user.put("password", password)
-            retrofitService.loginInstaUser(user).enqueue(object: Callback<userToken> {
-                override fun onResponse(p0: Call<userToken>, p1: Response<userToken>) {
+            retrofitService.loginInstaUser(user).enqueue(object: Callback<User> {
+                override fun onResponse(p0: Call<User>, p1: Response<User>) {
                     if (p1.isSuccessful) {
-                        val token: userToken = p1.body()!!
-
-
+                        val userToken: User = p1.body()!!
+                        Log.d("tokennn", userToken.token)
+                        val sharedPreferenced = getSharedPreferences("user_info", Context.MODE_PRIVATE)
+                        val editor: SharedPreferences.Editor = sharedPreferenced.edit()
+                        editor.putString("token", userToken.token)
+                        editor.putString("user_id", userToken.id.toString())
+                        editor.commit()
+                        startActivity(Intent(this@InstaLoginActivity, InstaMainActivity::class.java))
+                    }
+                    else {
+                        Log.d("tokennn", p1.code().toString())
                     }
                 }
 
-                override fun onFailure(p0: Call<userToken>, p1: Throwable) {
+                override fun onFailure(p0: Call<User>, p1: Throwable) {
                 }
             })
         }

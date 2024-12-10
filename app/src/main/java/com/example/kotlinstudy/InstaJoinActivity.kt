@@ -1,7 +1,10 @@
 package com.example.kotlinstudy
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -45,14 +48,21 @@ class InstaJoinActivity : AppCompatActivity() {
             user.put("username", username)
             user.put("password1", password1)
             user.put("password2", password2)
-            retrofitService.createInstaUser(user).enqueue(object : Callback<userToken> {
-                override fun onResponse(p0: Call<userToken>, p1: Response<userToken>) {
+            retrofitService.createInstaUser(user).enqueue(object : Callback<User> {
+                override fun onResponse(p0: Call<User>, p1: Response<User>) {
                     if (p1.isSuccessful) {
                         val userToken = p1.body()!!
+                        Log.d("tokennn", userToken.token)
+                        val sharedPreferenced = getSharedPreferences("user_info", Context.MODE_PRIVATE)
+                        val editor: SharedPreferences.Editor = sharedPreferenced.edit()
+                        editor.putString("token", userToken.token)
+                        editor.putString("user_id", userToken.id.toString())
+                        editor.commit()
                     }
+
                 }
 
-                override fun onFailure(p0: Call<userToken>, p1: Throwable) {
+                override fun onFailure(p0: Call<User>, p1: Throwable) {
                 }
             })
             startActivity(Intent(this, InstaLoginActivity::class.java))
