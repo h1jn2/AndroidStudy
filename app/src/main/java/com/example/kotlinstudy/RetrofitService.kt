@@ -11,6 +11,7 @@ import retrofit2.http.GET
 import retrofit2.http.HeaderMap
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 
@@ -27,7 +28,21 @@ class User(val username: String, val token: String, val id: Int)
 class InstaPost(val id: Int, val content: String, val image: String, val owner_profile: OwnerProfile)
 class OwnerProfile(val username: String, val image: String)
 
+class UserInfo(val id: Int, val userName: String, val profile: OwnerProfile)
+
 interface RetrofitService {
+    @GET("user/userInfo/")
+    fun getUserInfo(@HeaderMap header: Map<String, String>): Call<UserInfo>
+
+    @Multipart
+    @PUT("user/profile/{user_id}/")
+    fun changeProfile(
+        @Path("user_id") userId: Int,
+        @HeaderMap headers: Map<String, String>,
+        @Part image: MultipartBody.Part,
+        @Part ("user") user: RequestBody
+    ): Call<Any>
+
     @Multipart
     @POST("instagram/post/")
     fun uploadPost(

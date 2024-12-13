@@ -19,7 +19,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/insta_profile_cancel"
+            android:id="@+id/insta_profile_change_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -30,7 +30,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <ImageView
-        android:id="@+id/insta_profile_img"
+        android:id="@+id/insta_profile_change_img"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center_horizontal"
@@ -38,13 +38,13 @@
         android:src="@drawable/btn_outsta_my" />
 
     <TextView
-        android:id="@+id/insta_profile_button"
+        android:id="@+id/insta_profile_change_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/insta_button"
         android:padding="20dp"
-        android:text="변경하기"
+        android:text="완료"
         android:textColor="#ffffff"
         android:textSize="20dp" />
 
